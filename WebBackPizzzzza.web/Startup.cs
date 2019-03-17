@@ -20,7 +20,16 @@ namespace WebBackPizzzzza.web
 
             app.UseStaticFiles();
 
-            app.UseMvcWithDefaultRoute();
+            //app.UseMvcWithDefaultRoute();
+
+            app.UseMvc(routes =>
+            {
+                routes.MapAreaRoute(
+                    name: "default",
+                    areaName: "User",
+                    template: "{controller=UserRegistration}/{action=Index}/{id?}");
+                
+            });
         }
     }
 }
