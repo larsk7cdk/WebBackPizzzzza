@@ -9,35 +9,7 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
-        <div class="container">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Pizzzzza</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="About">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
-                    </li>
-                    <ul class="navbar-nav ml-sm-auto">
-                        <li class="nav-item align-items-center">
-                            <span class="text-light ">Navn</span>
-                        </li>  <li class="nav-item">
-                            <span class="nav-link ">Navn</span>
-                        </li>
-                    </ul>
-                </ul>
-            </div>
-        </div>
-    </nav>
+   <partial name="_NavBar"/>
 </header>
 
 <main class="container body-content">
@@ -45,8 +17,7 @@
 </main>
 
 <footer class="container">
-    <hr/>
-    <p>&copy; 2019 - Tic Tac Toe</p>
+    <partial name="_Footer"/>
 </footer>
 
 <script src="~/libs/jquery/jquery.js"></script>
@@ -55,8 +26,8 @@
 
 @RenderSection("Scripts", false)
 <environment include="Development">
-    @*<script src="~/app/js/scripts1.js"></script>
-    <script src="~/app/js/scripts2.js"></script>*@
+    <script src="~/js/navbar.js"></script>
+    @*<script src="~/app/js/scripts2.js"></script>*@
 </environment>
 </body>
 </html>

@@ -11,11 +11,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="wwwroot\typescript\file.ts" />
+    <None Remove="Typescript\file.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="wwwroot\js\site.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Typescript\file.js" />
+    <Content Include="Typescript\file.js.map" />
+    <Content Include="Typescript\file.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,7 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="wwwroot\typescript\file.ts" />
+    <TypeScriptCompile Include="Typescript\file.ts" />
   </ItemGroup>
 
   <ItemGroup>
