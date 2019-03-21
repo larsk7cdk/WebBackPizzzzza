@@ -3,39 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
-    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>3.4</TypeScriptToolsVersion>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Content Remove="wwwroot\js\site.min.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Typescript\file.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="wwwroot\js\site.min.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Typescript\file.js" />
-    <Content Include="Typescript\file.js.map" />
-    <Content Include="Typescript\file.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\js\site.min.js" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <TypeScriptCompile Include="Typescript\file.ts" />
   </ItemGroup>
 
   <ItemGroup>

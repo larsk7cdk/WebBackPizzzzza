@@ -6,12 +6,13 @@ namespace WebBackPizzzzza.web.Areas.User.Models
     {
         public int UserRegistrationId { get; set; }
 
-        [Required]
-        [Display(Name = "E-Mail")]
+        [Display(Name = "Email")]
+        [Required(ErrorMessage = "EmailRequired")]
         public string Email { get; set; }
 
-        [Required]
-        [Display(Name = "Kodeord")]
+        [Display(Name = "Password")]
+        [Required(ErrorMessage = "PasswordRequired")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
     }
 }
