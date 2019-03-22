@@ -1,4 +1,4 @@
-/// <binding BeforeBuild='Run - Development' />
+/// <binding />
 const path = require("path");
 
 module.exports = {
@@ -7,7 +7,6 @@ module.exports = {
         filename: "app.js",
         path: __dirname + "/wwwroot/dist"
     },
-    mode: "development",
     module: {
         rules: [
             {
