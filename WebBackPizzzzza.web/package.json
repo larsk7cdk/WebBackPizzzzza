@@ -19,7 +19,7 @@
     },
     "-vs-binding": {
         "BeforeBuild": [
-            "webpack:build"
+            "webpack:build:development"
         ]
     }
 }
