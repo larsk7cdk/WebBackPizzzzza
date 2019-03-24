@@ -1,7 +1,10 @@
 ﻿@model WebBackPizzzzza.web.ViewModels.ProductViewModel
 
-<div>
-    <h6>@Model.Name</h6>
-    <p>@Model.Price</p>
-    <img src="images/pizza-slice-solid.svg" asp-append-version="true" width="150"/>
+<div class="d-flex card" style="width: 205px">
+    <div class="card-header">@Model.Name</div>
+    <div class="card-body d-flex justify-content-center">
+        <img src="images/pizza-slice-solid.svg" asp-append-version="true" height="80"/>
+    </div>
+    <div class="card-footer">
+        @Model.Price.ToString("C")</div>
 </div>

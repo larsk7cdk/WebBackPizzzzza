@@ -17,6 +17,13 @@ namespace WebBackPizzzzza.web.Services
         {
             new ProductViewModel {Id = 1, Name = "Bahamas", Price = 89.00, ImageUrl = "~/"},
             new ProductViewModel {Id = 2, Name = "New York", Price = 89.00, ImageUrl = "~/"},
+            new ProductViewModel {Id = 3, Name = "New York", Price = 89.00, ImageUrl = "~/"},
+            new ProductViewModel {Id = 4, Name = "New York", Price = 89.00, ImageUrl = "~/"},
+            new ProductViewModel {Id = 5, Name = "New York", Price = 89.00, ImageUrl = "~/"},
+            new ProductViewModel {Id = 6, Name = "New York", Price = 89.00, ImageUrl = "~/"},
+            new ProductViewModel {Id = 7, Name = "New York", Price = 89.00, ImageUrl = "~/"},
+            new ProductViewModel {Id = 8, Name = "New York", Price = 89.00, ImageUrl = "~/"},
+            new ProductViewModel {Id = 9, Name = "New York", Price = 89.00, ImageUrl = "~/"},
 
 
         };
