@@ -19,7 +19,7 @@ namespace WebBackPizzzzza.web
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSession(o => { o.IdleTimeout = TimeSpan.FromMinutes(30); });
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
 
             services.Configure<RequestLocalizationOptions>(options =>
             {
@@ -28,11 +28,11 @@ namespace WebBackPizzzzza.web
                 options.SupportedUICultures = _supportedCultures;
             });
 
-            services.AddLocalization(options => options.ResourcesPath = "Resources");
-
             services.AddMvc()
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
                 .AddDataAnnotationsLocalization();
+
+            services.AddSession(o => { o.IdleTimeout = TimeSpan.FromMinutes(30); });
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -45,26 +45,19 @@ namespace WebBackPizzzzza.web
 
             app.UseStaticFiles();
             app.UseSession();
-
-            app.UseRequestLocalization(new RequestLocalizationOptions
-            {
-                DefaultRequestCulture = new RequestCulture("da-DK"),
-                SupportedCultures = _supportedCultures,
-                SupportedUICultures = _supportedCultures
-            });
-
             app.UseRequestLocalization();
 
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                    "areas",
-                    "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                    name: "areas",
+                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
                 );
 
                 routes.MapRoute(
-                    "default",
-                    "{controller=Home}/{action=Index}/{id?}");
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}"
+                );
             });
         }
     }

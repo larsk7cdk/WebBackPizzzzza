@@ -7,6 +7,8 @@
 <h1>UserRegistration</h1>
 <hr />
 
+<h2>@ViewBag.CurrentCulture</h2>
+
 <form asp-action="Index">
     <div class="row">
         <div class="col-md-6 offset-md-3">
@@ -16,14 +18,14 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <a asp-action="SetCulture" asp-route-id="0">
+                        <a asp-action="SetCulture" asp-route-culture="da-DK">
                             <img src="~/images/flag-denmark.png" asp-append-version="true"
-                                 class="@(ViewBag.culture == "0" ? "culture-selected" : null )" />
+                                 class="@(ViewBag.CurrentCulture == "da-DK" ? "culture-selected" : null )" />
                         </a>
 
-                        <a asp-action="SetCulture" asp-route-id="1">
+                        <a asp-action="SetCulture" asp-route-culture="en-US">
                             <img src="~/images/flag-united-kingdom.png" asp-append-version="true"
-                                 class="@(ViewBag.culture == "1" ? "culture-selected" : null )" />
+                                 class="@(ViewBag.CurrentCulture == "en-US" ? "culture-selected" : null )" />
                         </a>
                     </div>
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>

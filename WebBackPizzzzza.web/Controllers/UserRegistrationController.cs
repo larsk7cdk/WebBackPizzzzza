@@ -3,30 +3,35 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
-using WebBackPizzzzza.web.Areas.User.Models;
+using Microsoft.Extensions.Localization;
+using WebBackPizzzzza.web.Models;
 
 namespace WebBackPizzzzza.web.Controllers
 {
     public class UserRegistrationController : Controller
     {
-        public IActionResult Index()
+        private readonly IStringLocalizer<UserRegistrationController> _localizer;
+
+        public UserRegistrationController(IStringLocalizer<UserRegistrationController> localizer)
         {
-            var culture = Request.HttpContext.Session.GetString("culture");
-            if (string.IsNullOrEmpty(culture))
-            {
-                HttpContext.Session.SetString("culture", "da");
-            }
+            _localizer = localizer;
+        }
 
-            ViewBag.Culture = Request.HttpContext.Session.GetString("culture");
-            ViewBag.Language = ViewBag.Culture;
-
+        public IActionResult Index()
+        {        // Retrieves the requested culture
+            var rqf = Request.HttpContext.Features.Get<IRequestCultureFeature>();
+            // Culture contains the information of the requested culture
+            var culture = rqf.RequestCulture.Culture;
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Index(UserRegistration model)
         {
-            ViewBag.Culture = Request.HttpContext.Session.GetString("culture");
+
+    
+
+
             if (ModelState.IsValid)
             {
                 //await _userService.RegisterUser(userModel);
@@ -38,22 +43,17 @@ namespace WebBackPizzzzza.web.Controllers
             return View(model);
         }
 
-        public IActionResult SetCulture(string id)
+        public IActionResult SetCulture(string culture)
         {
-            var culture = id;
             Response.Cookies.Append(
                 CookieRequestCultureProvider.DefaultCookieName,
                 CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
-                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+                new CookieOptions {Expires = DateTimeOffset.UtcNow.AddYears(1)}
             );
 
-            ViewData["Message"] = "Culture set to " + culture;
+            ViewBag.CurrentCulture = culture;
 
             return View("Index");
-
-
-            //HttpContext.Session.SetString("culture", culture);
-            //return RedirectToAction("Index");
         }
     }
 }

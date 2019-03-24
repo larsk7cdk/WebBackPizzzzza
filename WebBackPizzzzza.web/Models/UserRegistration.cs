@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebBackPizzzzza.web.Areas.User.Models
+namespace WebBackPizzzzza.web.Models
 {
     public class UserRegistration
     {
