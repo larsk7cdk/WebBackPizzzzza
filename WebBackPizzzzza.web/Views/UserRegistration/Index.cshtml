@@ -1,47 +1,45 @@
-﻿@model WebBackPizzzzza.web.Models.UserRegistration
+﻿@model WebBackPizzzzza.web.ViewModels.UserRegistrationViewModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>UserRegistration</h1>
-<hr />
-
-<h2>@ViewBag.CurrentCulture</h2>
+<h1>@Localizer["Header"]</h1>
+<hr/>
 
 <form asp-action="Index">
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <div class="card">
                 <div class="card-header">
-                    Registering
+                    @Localizer["CardHeader"]
                 </div>
                 <div class="card-body">
                     <div class="form-group">
                         <a asp-action="SetCulture" asp-route-culture="da-DK">
                             <img src="~/images/flag-denmark.png" asp-append-version="true"
-                                 class="@(ViewBag.CurrentCulture == "da-DK" ? "culture-selected" : null )" />
+                                 class="@(ViewBag.CurrentCulture == "da-DK" ? "culture-selected" : null)"/>
                         </a>
 
                         <a asp-action="SetCulture" asp-route-culture="en-US">
                             <img src="~/images/flag-united-kingdom.png" asp-append-version="true"
-                                 class="@(ViewBag.CurrentCulture == "en-US" ? "culture-selected" : null )" />
+                                 class="@(ViewBag.CurrentCulture == "en-US" ? "culture-selected" : null)"/>
                         </a>
                     </div>
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
                         <label asp-for="Email"></label>
-                        <input asp-for="Email" class="form-control" />
+                        <input asp-for="Email" class="form-control"/>
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
                         <label asp-for="Password"></label>
-                        <input asp-for="Password" class="form-control" />
+                        <input asp-for="Password" class="form-control"/>
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                     <div class="text-right">
-                        <input type="submit" value="Create" class="btn btn-primary" />
+                        <input type="submit" value="@Localizer["ButtonRegister"]" class="btn btn-primary"/>
                     </div>
                 </div>
             </div>

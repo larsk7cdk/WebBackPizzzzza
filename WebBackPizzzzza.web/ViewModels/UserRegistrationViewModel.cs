@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebBackPizzzzza.web.Models
+namespace WebBackPizzzzza.web.ViewModels
 {
-    public class UserRegistration
+    public class UserRegistrationViewModel
     {
         public int UserRegistrationId { get; set; }
 

@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.DependencyInjection;
+using WebBackPizzzzza.web.Filters;
+using WebBackPizzzzza.web.Services;
 
 namespace WebBackPizzzzza.web
 {
@@ -19,6 +21,11 @@ namespace WebBackPizzzzza.web
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IUserService, UserService>();
+            services.AddSingleton<IProductService, ProductService>();
+            services.AddSingleton<IBasketService, BasketService>();
+            
+
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
             services.Configure<RequestLocalizationOptions>(options =>
@@ -28,7 +35,9 @@ namespace WebBackPizzzzza.web
                 options.SupportedUICultures = _supportedCultures;
             });
 
-            services.AddMvc()
+            services.AddMvc(options =>
+                    options.Filters.Add(typeof(UserRegistrationFilter))
+                )
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
                 .AddDataAnnotationsLocalization();
 
@@ -50,13 +59,8 @@ namespace WebBackPizzzzza.web
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                    name: "areas",
-                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-                );
-
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}"
+                    "default",
+                    "{controller=UserRegistration}/{action=Index}/{id?}"
                 );
             });
         }

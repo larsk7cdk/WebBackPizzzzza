@@ -1,43 +1,28 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Localization;
-using WebBackPizzzzza.web.Models;
+using WebBackPizzzzza.web.ViewModels;
 
 namespace WebBackPizzzzza.web.Controllers
 {
     public class UserRegistrationController : Controller
     {
-        private readonly IStringLocalizer<UserRegistrationController> _localizer;
-
-        public UserRegistrationController(IStringLocalizer<UserRegistrationController> localizer)
-        {
-            _localizer = localizer;
-        }
-
         public IActionResult Index()
-        {        // Retrieves the requested culture
-            var rqf = Request.HttpContext.Features.Get<IRequestCultureFeature>();
-            // Culture contains the information of the requested culture
-            var culture = rqf.RequestCulture.Culture;
+        {
+            ViewBag.CurrentCulture = Request.HttpContext.Features.Get<IRequestCultureFeature>()
+                .RequestCulture.Culture.ToString();
+
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(UserRegistration model)
+        public IActionResult Index(UserRegistrationViewModel model)
         {
-
-    
-
-
             if (ModelState.IsValid)
             {
-                //await _userService.RegisterUser(userModel);
-                //return RedirectToAction(nameof(EmailConfirmation), new { userModel.Email });
-
-                //return Content($"User {userModel.FirstName} {userModel.LastName} has been registered sucessfully");
+                HttpContext.Session.SetString("userEmail", model.Email);
+                return RedirectToAction("Index", "Products");
             }
 
             return View(model);

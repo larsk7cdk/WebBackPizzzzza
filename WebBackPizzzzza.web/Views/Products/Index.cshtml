@@ -1,0 +1,17 @@
+﻿@model IEnumerable<WebBackPizzzzza.web.ViewModels.ProductViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Menu</h1>
+
+<table class="table table-bordered">
+
+    @foreach (var product in Model)
+    {
+        <tr>
+            <td style="width: 100%">@await Component.InvokeAsync("Product", product)</td>
+        </tr>
+    }
+</table>
