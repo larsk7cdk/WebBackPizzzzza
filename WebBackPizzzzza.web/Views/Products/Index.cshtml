@@ -11,7 +11,10 @@
     @foreach (var product in Model)
     {
         <tr>
-            <td style="width: 100%">@await Component.InvokeAsync("Product", product)</td>
+            <td style="width: 100%">
+                <a asp-controller="Products" asp-action="AddToBasket" asp-route-id="@product.Id"> @await Component.InvokeAsync("Product", product)</a>
+
+            </td>
         </tr>
     }
 </table>

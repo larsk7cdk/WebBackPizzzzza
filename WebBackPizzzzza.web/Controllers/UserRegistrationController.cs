@@ -28,6 +28,7 @@ namespace WebBackPizzzzza.web.Controllers
             return View(model);
         }
 
+        [HttpPost]
         public IActionResult SetCulture(string culture)
         {
             Response.Cookies.Append(

@@ -1,15 +1,31 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using WebBackPizzzzza.web.Services;
 
 namespace WebBackPizzzzza.web.Controllers
 {
     public class ProductsController : Controller
     {
-        public IActionResult Index([FromServices] IProductService productService)
+        private readonly IProductService _productService;
+
+        public ProductsController(IProductService productService)
         {
-            var products = productService.GetProducts();
+            _productService = productService;
+        }
+
+        public IActionResult Index()
+        {
+            var products = _productService.GetProducts();
 
             return View(products);
+        }
+
+        public async Task<IActionResult> AddToBasket([FromRoute] int id, [FromServices] IBasketService basketService)
+        {
+            var product = await _productService.GetProductById(id);
+            await basketService.AddToBasket(product);
+
+            return RedirectToAction("Index");
         }
     }
 }

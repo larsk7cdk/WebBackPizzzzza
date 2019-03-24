@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using WebBackPizzzzza.web.ViewModels;
 
 namespace WebBackPizzzzza.web.Services
@@ -6,6 +8,7 @@ namespace WebBackPizzzzza.web.Services
     public interface IProductService
     {
         IEnumerable<ProductViewModel> GetProducts();
+        Task<ProductViewModel> GetProductById(int id);
     }
 
     public class ProductService : IProductService
@@ -20,5 +23,6 @@ namespace WebBackPizzzzza.web.Services
 
         public IEnumerable<ProductViewModel> GetProducts() => _products;
 
+        public async Task<ProductViewModel> GetProductById(int id) => await Task.Run(() => _products.FirstOrDefault(x=> x.Id.Equals(id)));
     }
 }
