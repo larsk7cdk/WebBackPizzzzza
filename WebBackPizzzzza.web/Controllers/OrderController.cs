@@ -17,9 +17,9 @@ namespace WebBackPizzzzza.web.Controllers
 
         public async Task< IActionResult> Index()
         {
-            IList<ProductViewModel> products = await _basketService.ProductsInBasket();
+           // IList<ProductViewModel> products = await _basketService.ProductsInBasket();
 
-            return View(products);
+            return View();
         }
     }
 }

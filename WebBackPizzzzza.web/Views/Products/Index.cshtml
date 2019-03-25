@@ -13,6 +13,7 @@
         <div class="p-2 pb-4">
             @await Component.InvokeAsync("Product", product)
             <a asp-controller="Products" asp-action="AddToBasket" asp-route-id="@product.Id" class="d-flex mt-2 justify-content-center">Tilføj</a>
+            <a asp-controller="Products" asp-action="RemoveFromBasket" asp-route-id="@product.Id" class="d-flex mt-2 justify-content-center">Fjern</a>
         </div>
     }
 

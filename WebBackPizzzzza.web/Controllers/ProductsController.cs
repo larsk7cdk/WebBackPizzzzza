@@ -22,8 +22,14 @@ namespace WebBackPizzzzza.web.Controllers
 
         public async Task<IActionResult> AddToBasket([FromRoute] int id, [FromServices] IBasketService basketService)
         {
-            var product = await _productService.GetProductById(id);
-            await basketService.AddToBasket(product);
+            await basketService.AddToBasket(id);
+
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> RemoveFromBasket([FromRoute] int id, [FromServices] IBasketService basketService)
+        {
+            await basketService.RemoveFromBasket(id);
 
             return RedirectToAction("Index");
         }

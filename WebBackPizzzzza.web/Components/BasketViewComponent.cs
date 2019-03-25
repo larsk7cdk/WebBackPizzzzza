@@ -15,7 +15,7 @@ namespace WebBackPizzzzza.web.Components
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var noOfProducts = await _basketService.NoOfProductsInBasket();
+            var noOfProducts = _basketService.NoOfProductsInBasket;
 
             return View(noOfProducts);
         }
