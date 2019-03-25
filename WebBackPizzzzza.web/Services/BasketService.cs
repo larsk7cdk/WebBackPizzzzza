@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Concurrent;
 using System.Threading.Tasks;
-using WebBackPizzzzza.web.ViewModels;
 
 namespace WebBackPizzzzza.web.Services
 {
@@ -15,7 +11,7 @@ namespace WebBackPizzzzza.web.Services
         Task<ConcurrentDictionary<int, int>> ProductsInBasket();
     }
 
-    public class BasketService : IBasketService, IDisposable
+    public class BasketService : IBasketService
     {
         private static ConcurrentDictionary<int, int> ProductsID = new ConcurrentDictionary<int, int>();
 
@@ -23,7 +19,6 @@ namespace WebBackPizzzzza.web.Services
 
         public async Task AddToBasket(int id) =>
             await Task.FromResult(ProductsID.AddOrUpdate(id, 1, (key, oldValue) => oldValue + 1));
-
 
         public async Task RemoveFromBasket(int id) =>
             await Task.FromResult(ProductsID.AddOrUpdate(id, 1, (key, oldValue) =>
@@ -33,10 +28,5 @@ namespace WebBackPizzzzza.web.Services
             }));
 
         public Task<ConcurrentDictionary<int, int>> ProductsInBasket() => Task.FromResult(ProductsID);
-
-        public void Dispose()
-        {
-            ProductsID = null;
-        }
     }
 }
