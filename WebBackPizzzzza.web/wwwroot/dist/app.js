@@ -86,15 +86,27 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./scripts/Product.ts":
+/*!****************************!*\
+  !*** ./scripts/Product.ts ***!
+  \****************************/
+/*! exports provided: Product */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Product\", function() { return Product; });\nvar Product = /** @class */ (function () {\r\n    function Product() {\r\n    }\r\n    Product.prototype.addToBasket = function (id) {\r\n        console.log(id);\r\n    };\r\n    return Product;\r\n}());\r\n\r\n\n\n//# sourceURL=webpack:///./scripts/Product.ts?");
+
+/***/ }),
+
 /***/ "./scripts/app.ts":
 /*!************************!*\
   !*** ./scripts/app.ts ***!
   \************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("\r\n\n\n//# sourceURL=webpack:///./scripts/app.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _Product_ts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Product.ts */ \"./scripts/Product.ts\");\n\r\n\n\n//# sourceURL=webpack:///./scripts/app.ts?");
 
 /***/ })
 

@@ -1,1 +1,1 @@
-﻿
+﻿import "./Product.ts";

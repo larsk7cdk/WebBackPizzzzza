@@ -1,6 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebBackPizzzzza.web.Services;
+using WebBackPizzzzza.web.ViewModels;
 
 namespace WebBackPizzzzza.web.Controllers
 {
@@ -15,7 +17,7 @@ namespace WebBackPizzzzza.web.Controllers
 
         public IActionResult Index()
         {
-            var products = _productService.GetProducts();
+            IEnumerable<ProductViewModel> products = _productService.GetProducts();
 
             return View(products);
         }
