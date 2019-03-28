@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebBackPizzzzza.web.Services;
-using WebBackPizzzzza.web.ViewModels;
 
 namespace WebBackPizzzzza.web.Controllers
 {
@@ -15,15 +13,16 @@ namespace WebBackPizzzzza.web.Controllers
             _productService = productService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            IEnumerable<ProductViewModel> products = _productService.GetProducts();
+            var products = await _productService.GetProducts();
 
             return View(products);
         }
 
         public async Task<IActionResult> AddToBasket([FromRoute] int id, [FromServices] IBasketService basketService)
         {
+            await _productService.UpdateBasket(id, 1);
             await basketService.AddToBasket(id);
 
             return RedirectToAction("Index");
@@ -31,6 +30,7 @@ namespace WebBackPizzzzza.web.Controllers
 
         public async Task<IActionResult> RemoveFromBasket([FromRoute] int id, [FromServices] IBasketService basketService)
         {
+            await _productService.UpdateBasket(id, -1);
             await basketService.RemoveFromBasket(id);
 
             return RedirectToAction("Index");

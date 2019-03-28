@@ -19,6 +19,9 @@ namespace WebBackPizzzzza.web.Controllers
         [HttpPost]
         public IActionResult Index(UserRegistrationViewModel model)
         {
+            ViewBag.CurrentCulture = Request.HttpContext.Features.Get<IRequestCultureFeature>()
+                .RequestCulture.Culture.ToString();
+
             if (ModelState.IsValid)
             {
                 HttpContext.Session.SetString("userEmail", model.Email);
@@ -28,8 +31,8 @@ namespace WebBackPizzzzza.web.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        public IActionResult SetCulture(string culture)
+        [HttpGet]
+        public IActionResult SetCulture([FromQuery]string culture)
         {
             Response.Cookies.Append(
                 CookieRequestCultureProvider.DefaultCookieName,

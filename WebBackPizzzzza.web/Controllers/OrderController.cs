@@ -1,25 +1,25 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebBackPizzzzza.web.Services;
-using WebBackPizzzzza.web.ViewModels;
 
 namespace WebBackPizzzzza.web.Controllers
 {
     public class OrderController : Controller
     {
-        private readonly IBasketService _basketService;
+        private readonly IOrderService _orderService;
 
-        public OrderController(IBasketService basketService)
+        public OrderController(IOrderService orderService)
         {
-            _basketService = basketService;
+            _orderService = orderService;
         }
 
         public async Task< IActionResult> Index()
         {
            // IList<ProductViewModel> products = await _basketService.ProductsInBasket();
 
-            return View();
+           var orderViewModels = await _orderService.GetOrderProducts();
+
+           return View();
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WebBackPizzzzza.web.Services;
 
@@ -22,8 +21,7 @@ namespace WebBackPizzzzza.UnitTests.Services
             _sut.ClearBasket();
             await _sut.AddToBasket(Id);
 
-            var result = await _sut.ProductsInBasket();
-            result.TryGetValue(Id, out var actual);
+            var actual = _sut.NoOfProductsInBasket;
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -41,8 +39,7 @@ namespace WebBackPizzzzza.UnitTests.Services
             await _sut.AddToBasket(Id);
             await _sut.AddToBasket(Id);
 
-            var result = await _sut.ProductsInBasket();
-            result.TryGetValue(Id, out var actual);
+            var actual = _sut.NoOfProductsInBasket;
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -61,8 +58,7 @@ namespace WebBackPizzzzza.UnitTests.Services
             await _sut.AddToBasket(Id);
             await _sut.RemoveFromBasket(Id);
 
-            var result = await _sut.ProductsInBasket();
-            result.TryGetValue(Id, out var actual);
+            var actual = _sut.NoOfProductsInBasket;
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -81,8 +77,7 @@ namespace WebBackPizzzzza.UnitTests.Services
             await _sut.RemoveFromBasket(Id);
             await _sut.RemoveFromBasket(Id);
 
-            var result = await _sut.ProductsInBasket();
-            result.TryGetValue(Id, out var actual);
+            var actual = _sut.NoOfProductsInBasket;
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -100,8 +95,7 @@ namespace WebBackPizzzzza.UnitTests.Services
             await _sut.RemoveFromBasket(Id);
             await _sut.RemoveFromBasket(Id);
 
-            var result = await _sut.ProductsInBasket();
-            result.TryGetValue(Id, out var actual);
+            var actual = _sut.NoOfProductsInBasket;
 
             // Assert
             Assert.AreEqual(expected, actual);

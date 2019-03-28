@@ -1,10 +1,9 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using WebBackPizzzzza.web.Services;
 
 namespace WebBackPizzzzza.web.Components
 {
-    public  class BasketViewComponent : ViewComponent
+    public class BasketViewComponent : ViewComponent
     {
         private readonly IBasketService _basketService;
 
@@ -13,7 +12,7 @@ namespace WebBackPizzzzza.web.Components
             _basketService = basketService;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public IViewComponentResult Invoke()
         {
             var noOfProducts = _basketService.NoOfProductsInBasket;
 

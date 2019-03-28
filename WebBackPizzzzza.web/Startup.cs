@@ -23,8 +23,9 @@ namespace WebBackPizzzzza.web
         {
             services.AddSingleton<IUserService, UserService>();
             services.AddSingleton<IProductService, ProductService>();
-            services.AddSingleton<IBasketService, BasketService>();
-            
+            services.AddScoped<IBasketService, BasketService>();
+            services.AddScoped<IOrderService, OrderService>();
+
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
