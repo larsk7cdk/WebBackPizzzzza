@@ -1,25 +1,40 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using WebBackPizzzzza.web.Models;
 using WebBackPizzzzza.web.Services;
 
 namespace WebBackPizzzzza.web.Controllers
 {
     public class OrderController : Controller
     {
+        private readonly IEmailService _emailService;
         private readonly IOrderService _orderService;
 
-        public OrderController(IOrderService orderService)
+        public OrderController(IOrderService orderService, IEmailService emailService)
         {
             _orderService = orderService;
+            _emailService = emailService;
         }
 
-        public async Task< IActionResult> Index()
+        public async Task<IActionResult> Index()
         {
-           // IList<ProductViewModel> products = await _basketService.ProductsInBasket();
+            var order = await _orderService.GetOrder();
 
-           var orderViewModels = await _orderService.GetOrderProducts();
+            return View(order);
+        }
 
-           return View();
+        public async Task<IActionResult> SendOrder()
+        {
+            var order = await _orderService.GetOrder();
+            var result = await _emailService.SendEmail(new EmailModel());
+
+            if (result)
+            {
+                _orderService.ClearOrder();
+                return RedirectToAction("Index", "Confirmation");
+            }
+
+            return RedirectToAction("Index", order);
         }
     }
 }

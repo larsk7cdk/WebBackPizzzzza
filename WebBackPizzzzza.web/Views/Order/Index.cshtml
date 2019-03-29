@@ -1,8 +1,39 @@
-﻿@model IEnumerable< WebBackPizzzzza.web.ViewModels.OrderViewModel>
+﻿@model WebBackPizzzzza.web.ViewModels.OrderViewModel
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Bestilling</h1>
 
-<h6>Products in basket</h6>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Pizza</th>
+            <th>Antal</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model.OrderLines)
+            {
+                <tr>
+                    <td class="w-50">@item.Name</td>
+                    <td class="w-25">@item.NoOfItems</td>
+                    <td class="w-25">@item.LinePriceTotal.ToString("C")</td>
+                </tr>
+            }
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td class="font-weight-bold">Ialt</td>
+            <td class=""></td>
+            <td class="font-weight-bold">@Model.PriceTotal.ToString("C")</td>
+        </tr>
+    </tfoot>
+</table>
+
+<div class="text-right">
+    <a asp-controller="Order" asp-action="SendOrder" class="btn btn-primary">Afsend bestilling</a>
+</div>

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using WebBackPizzzzza.web.ViewModels;
 
@@ -6,13 +7,14 @@ namespace WebBackPizzzzza.web.Services
 {
     public interface IOrderService
     {
-        Task<IEnumerable<OrderViewModel>> GetOrderProducts();
+        Task<OrderViewModel> GetOrder();
+        void ClearOrder();
     }
 
     public class OrderService : IOrderService
     {
-        private readonly IProductService _productService;
         private readonly IBasketService _basketService;
+        private readonly IProductService _productService;
 
         public OrderService(IProductService productService, IBasketService basketService)
         {
@@ -20,17 +22,30 @@ namespace WebBackPizzzzza.web.Services
             _basketService = basketService;
         }
 
-        public async Task<IEnumerable<OrderViewModel>> GetOrderProducts()
+        public async Task<OrderViewModel> GetOrder()
         {
-            IList<OrderViewModel> basketProducts = new List<OrderViewModel>();
+            var order = new OrderViewModel
+            {
+                OrderLines = new List<OrderLineViewModel>()
+            };
 
-            foreach (var (id, no) in _basketService.GetBasketProducts)
+            foreach (var (id, noOfItems) in _basketService.GetBasketProducts)
             {
                 var product = await _productService.GetProductById(id);
-                basketProducts.Add(new OrderViewModel { Name = product.Name, NoOfItems = no });
+                var priceTotel = product.Price * noOfItems;
+                order.OrderLines.Add(new OrderLineViewModel
+                { Name = product.Name, NoOfItems = noOfItems, LinePriceTotal = priceTotel });
             }
 
-            return basketProducts;
+            order.PriceTotal = order.OrderLines.Sum(x => x.LinePriceTotal);
+
+            return order;
+        }
+
+        public void ClearOrder()
+        {
+            _productService.ResetProducts();
+            _basketService.ClearBasket();
         }
     }
 }
