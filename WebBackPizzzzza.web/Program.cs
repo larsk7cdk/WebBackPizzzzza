@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using WebBackPizzzzza.web.Extensions;
 
 namespace WebBackPizzzzza.web
 {
@@ -16,9 +17,9 @@ namespace WebBackPizzzzza.web
                 .CaptureStartupErrors(true)
                 .PreferHostingUrls(true)
                 .UseUrls("http://localhost:5000")
-                //.ConfigureLogging((hostingcontext, logging) =>
-                //    logging.AddLoggingConfiguration(hostingcontext.Configuration)
-                //)
+                .ConfigureLogging((hostingcontext, logging) =>
+                    logging.AddLoggingConfiguration(hostingcontext.Configuration)
+                )
                 .UseStartup<Startup>();
         }
     }

@@ -65,6 +65,8 @@ namespace WebBackPizzzzza.web
                     "{controller=UserRegistration}/{action=Index}/{id?}"
                 );
             });
+
+            app.UseStatusCodePages("text/plain", "HTTP Error - Status Code: {0}");
         }
     }
 }

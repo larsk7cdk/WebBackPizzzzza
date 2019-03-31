@@ -19,12 +19,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Extensions\" />
+    <Folder Include="Options\" />
     <Folder Include="wwwroot\dist\" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="Resources\Views\UserRegistration\Index.en.resx" />
     <None Include="Resources\Views\UserRegistration\Index.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WebBackPizzzzza.Logging\WebBackPizzzzza.Logging.csproj" />
   </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
