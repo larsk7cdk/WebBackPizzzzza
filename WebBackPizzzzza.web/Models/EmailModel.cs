@@ -2,5 +2,6 @@
 {
     public class EmailModel
     {
+        public string  MailTo { get; set; }
     }
 }

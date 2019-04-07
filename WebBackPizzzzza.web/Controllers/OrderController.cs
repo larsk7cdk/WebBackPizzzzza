@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebBackPizzzzza.web.Models;
 using WebBackPizzzzza.web.Services;
@@ -25,8 +26,11 @@ namespace WebBackPizzzzza.web.Controllers
 
         public async Task<IActionResult> SendOrder()
         {
+
+            var email = HttpContext.Session.GetString("userEmail");
+
             var order = await _orderService.GetOrder();
-            var result = await _emailService.SendEmail(new EmailModel());
+            var result = await _emailService.SendEmail(new EmailModel { MailTo = email });
 
             if (result)
             {
